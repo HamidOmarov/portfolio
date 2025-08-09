@@ -4,9 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hamid Omarov – AI Portfolio</title>
+  <meta name="description" content="Hamid Omarov — AI Developer. RAG chatbots, content moderation, creative AI demos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://formspree.io/f/myzplzbn" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#0b0f1a; --surface:#111829; --muted:#9db2ff; --text:#e7ecff; --line:#1f2a46;
@@ -71,7 +72,6 @@
         <!-- Project 1: PDF RAG Chatbot -->
         <article class="card">
           <div class="thumb">
-            <!-- Replace src with your uploaded image path in the repo -->
             <img src="assets/pdf_rag_thumbnail.png" alt="PDF RAG Chatbot thumbnail" />
           </div>
           <h3>PDF RAG Chatbot</h3>
@@ -136,11 +136,17 @@
 
     <section id="contact" class="card">
       <h2>Contact</h2>
-      <p class="muted">This form posts to Formspree. Replace <code>YOUR_FORM_ID</code> with your ID later.</p>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <p class="muted">This form posts to Formspree and emails me directly.</p>
+      <form action="https://formspree.io/f/myzplzbn" method="POST">
         <input name="name" placeholder="Your name" required>
         <input type="email" name="email" placeholder="Your email" required>
         <textarea name="message" placeholder="Project idea, links, timeline" required></textarea>
+
+        <!-- optional helpers -->
+        <input type="hidden" name="_subject" value="New message from Hamid's portfolio">
+        <input type="hidden" name="_redirect" value="https://hamidomarov.github.io/portfolio/thanks.html">
+        <input type="text" name="_gotcha" style="display:none">
+
         <button class="btn" type="submit">Send</button>
       </form>
     </section>
