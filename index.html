@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hamid Omarov – AI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f1a; --surface:#111829; --muted:#9db2ff; --text:#e7ecff; --line:#1f2a46;
+      --accent:#7aa2ff; --accent2:#9ef0ff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{background:linear-gradient(180deg,#0b0f1a,#0f1422);color:var(--text)}
+    .wrap{max-width:1000px;margin:0 auto;padding:28px}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:var(--accent2)}
+    header{padding:36px 0 8px}
+    .pill{display:inline-block;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:12px;letter-spacing:.3px;text-transform:uppercase}
+    h1{margin:10px 0 4px;font-size:42px;line-height:1.1}
+    p{color:#cfd7ff;line-height:1.6}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#07122c;padding:12px 16px;border-radius:12px;font-weight:700}
+    .line{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:22px 0}
+
+    /* Grid */
+    .grid{display:grid;gap:18px}
+    @media(min-width:860px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+
+    /* Card */
+    .card{background:radial-gradient(1100px 600px at -10% -20%,rgba(122,162,255,.12),transparent),
+          linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
+          border:1px solid var(--line);border-radius:16px;padding:16px}
+    .card h3{margin:8px 0 6px;font-size:18px}
+    .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+    .tag{border:1px solid #2b3a63;border-radius:999px;padding:4px 8px;font-size:12px;color:#c9d3ff}
+    .thumb{aspect-ratio:4/3;border-radius:12px;overflow:hidden;border:1px solid #1e2744;background:#0e1424;display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .links{display:flex;gap:10px;margin-top:10px}
+    .links a{border:1px solid #2b3a63;padding:8px 10px;border-radius:10px;font-size:13px;color:#c9d3ff}
+    .links a:hover{background:#1b2445}
+
+    /* Contact */
+    form{display:grid;gap:10px}
+    input,textarea{background:#0e1424;border:1px solid #233053;color:var(--text);border-radius:10px;padding:10px;font:inherit}
+    textarea{min-height:120px}
+    footer{opacity:.85;padding:36px 0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="pill">AI Developer · RAG · Chatbots</span>
+      <h1>Hamid Omarov</h1>
+      <p>I build pragmatic AI tools: RAG chatbots, content moderation, and creative AI demos. Night-owl schedule, fast iterations, clean repos.</p>
+      <div class="row" style="margin-top:10px">
+        <a class="btn" href="https://github.com/HamidOmarov" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/hamidomarov/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </header>
+
+    <div class="line"></div>
+
+    <section>
+      <h2>Featured Projects</h2>
+      <div class="grid grid-3">
+        <!-- Project 1: PDF RAG Chatbot -->
+        <article class="card">
+          <div class="thumb">
+            <!-- Replace src with your uploaded image path in the repo -->
+            <img src="assets/pdf_rag_thumbnail.png" alt="PDF RAG Chatbot thumbnail" />
+          </div>
+          <h3>PDF RAG Chatbot</h3>
+          <p>Ask questions over PDFs. Chunking + embeddings + retrieval with a clean Gradio UI.</p>
+          <div class="meta">
+            <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Vector DB</span><span class="tag">Gradio</span>
+          </div>
+          <div class="links">
+            <a href="#" target="_blank">Live Demo</a>
+            <a href="#" target="_blank">GitHub</a>
+          </div>
+        </article>
+
+        <!-- Project 2: EthicaGuard -->
+        <article class="card">
+          <div class="thumb">
+            <img src="assets/ethicaguard_thumbnail.png" alt="EthicaGuard thumbnail" />
+          </div>
+          <h3>EthicaGuard</h3>
+          <p>Toxic content detector fine-tuned on social comments with a simple web demo.</p>
+          <div class="meta">
+            <span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">Gradio</span>
+          </div>
+          <div class="links">
+            <a href="#" target="_blank">Live Demo</a>
+            <a href="https://github.com/HamidOmarov/EthicaGuard-AI-Content-Moderator" target="_blank">GitHub</a>
+          </div>
+        </article>
+
+        <!-- Project 3: Neural Sonata -->
+        <article class="card">
+          <div class="thumb">
+            <img src="assets/neural_sonata_thumbnail.png" alt="Neural Sonata thumbnail" />
+          </div>
+          <h3>Neural Sonata</h3>
+          <p>Interactive music & visuals driven by model predictions. A creative AI experience.</p>
+          <div class="meta">
+            <span class="tag">Flask</span><span class="tag">p5.js</span><span class="tag">Visualization</span>
+          </div>
+          <div class="links">
+            <a href="#" target="_blank">Live Demo</a>
+            <a href="#" target="_blank">GitHub</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="line"></div>
+
+    <section>
+      <h2>What I can ship this week</h2>
+      <div class="card">
+        <ul>
+          <li>Document Q&A chatbot for PDFs or websites</li>
+          <li>Lightweight retrieval API (FastAPI)</li>
+          <li>Deployment to Hugging Face Spaces or simple VPS</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="line"></div>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p class="muted">This form posts to Formspree. Replace <code>YOUR_FORM_ID</code> with your ID later.</p>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <textarea name="message" placeholder="Project idea, links, timeline" required></textarea>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="line"></div>
+      <p>© <span id="y"></span> Hamid Omarov • Built with HTML & CSS • Deployed on GitHub Pages</p>
+    </footer>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
