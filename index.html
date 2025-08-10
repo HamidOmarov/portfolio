@@ -31,12 +31,12 @@
   <style>
     :root{
       --bg:#0b0f1a; --surface:#111829; --muted:#9db2ff; --text:#e7ecff; --line:#1f2a46;
-      --accent:#7aa2ff; --accent2:#9ef0ff;
+      --accent:#7aa2ff; --accent2:#9ef0ff; --btnText:#061127;
     }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
     body{background:linear-gradient(180deg,#0b0f1a,#0f1422);color:var(--text)}
-    .wrap{max-width:1000px;margin:0 auto;padding:28px}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px}
     a{color:var(--accent);text-decoration:none}
     a:hover{color:var(--accent2)}
     header{padding:36px 0 8px}
@@ -44,10 +44,13 @@
     h1{margin:10px 0 4px;font-size:42px;line-height:1.1}
     p{color:#cfd7ff;line-height:1.6}
     .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-    .btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#07122c;padding:12px 16px;border-radius:12px;font-weight:700}
+    .btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--btnText);padding:12px 16px;border-radius:12px;font-weight:700;border:0}
+    .btn:hover{filter:brightness(1.05)}
+    .btn-ghost{display:inline-block;border:1px solid #2b3a63;padding:10px 14px;border-radius:10px;font-weight:600;color:#c9d3ff;background:transparent}
+    .btn-ghost:hover{background:#1b2445;color:#fff}
     .line{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:22px 0}
     .grid{display:grid;gap:18px}
-    @media(min-width:860px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:980px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:1.2fr .8fr}}
     .card{background:radial-gradient(1100px 600px at -10% -20%,rgba(122,162,255,.12),transparent),
           linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
           border:1px solid var(--line);border-radius:16px;padding:16px}
@@ -56,13 +59,26 @@
     .tag{border:1px solid #2b3a63;border-radius:999px;padding:4px 8px;font-size:12px;color:#c9d3ff}
     .thumb{aspect-ratio:4/3;border-radius:12px;overflow:hidden;border:1px solid #1e2744;background:#0e1424;display:flex;align-items:center;justify-content:center}
     .thumb img{width:100%;height:100%;object-fit:cover}
-    .links{display:flex;gap:10px;margin-top:10px}
-    .links a{border:1px solid #2b3a63;padding:8px 10px;border-radius:10px;font-size:13px;color:#c9d3ff}
-    .links a:hover{background:#1b2445}
+    .links{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    /* Make project links look like buttons (distinct from tags) */
+    .links a{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--btnText);
+             padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;border:0}
+    .links a:hover{filter:brightness(1.06)}
     form{display:grid;gap:10px}
     input,textarea{background:#0e1424;border:1px solid #233053;color:var(--text);border-radius:10px;padding:10px;font:inherit}
     textarea{min-height:120px}
     footer{opacity:.85;padding:36px 0}
+
+    /* HERO (FastAPI RAG API) */
+    .hero{display:grid;gap:18px}
+    .hero-media{border:1px solid #1e2744;border-radius:16px;background:#0e1424;overflow:hidden}
+    .hero-media .frame{position:relative;aspect-ratio:16/9;width:100%;display:flex;align-items:center;justify-content:center}
+    .hero-media img{width:100%;height:100%;object-fit:cover}
+    .hero h2{margin:6px 0 6px;font-size:28px}
+    .bullets{margin:10px 0 0 18px;color:#cfd7ff}
+    .bullets li{margin:4px 0}
+    .hero .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .muted{color:#b6c3ff}
   </style>
 </head>
 <body>
@@ -73,30 +89,60 @@
       <p>I build pragmatic AI tools: RAG chatbots, content moderation, and creative AI demos. Night-owl schedule, fast iterations, clean repos.</p>
       <div class="row" style="margin-top:10px">
         <a class="btn" href="https://github.com/HamidOmarov" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/hamidomarov/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#contact">Contact</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/hamidomarov/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn-ghost" href="#contact">Contact</a>
       </div>
     </header>
+
+    <div class="line"></div>
+
+    <!-- HERO: FastAPI RAG API (prominent) -->
+    <section class="card hero grid grid-2">
+      <div class="hero-media">
+        <div class="frame">
+          <!-- Big GIF preview -->
+          <img src="assets/demo.gif" alt="FastAPI RAG API — dashboard and API demo GIF">
+        </div>
+      </div>
+      <div>
+        <h2>FastAPI RAG API</h2>
+        <p class="muted">Production-ready RAG backend + Streamlit dashboard. Upload PDFs, ask questions, extractive answers with AZ→EN translation and numeric/table robustness.</p>
+        <ul class="bullets">
+          <li>Endpoints: <code>/upload_pdf</code>, <code>/ask_question</code>, <code>/get_history</code>, <code>/health</code></li>
+          <li>Embeddings: sentence-transformers · Vector store: FAISS</li>
+          <li>Deployments: Hugging Face Spaces (API + UI)</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="https://huggingface.co/spaces/HamidOmarov/RAG-Dashboard" target="_blank" rel="noopener">Live UI (Dashboard)</a>
+          <a class="btn" href="https://huggingface.co/spaces/HamidOmarov/FastAPI-RAG-API" target="_blank" rel="noopener">Live API (FastAPI)</a>
+          <a class="btn-ghost" href="https://github.com/HamidOmarov/fastapi-rag-api" target="_blank" rel="noopener">GitHub (API)</a>
+          <a class="btn-ghost" href="https://github.com/HamidOmarov/rag-dashboard" target="_blank" rel="noopener">GitHub (Dashboard)</a>
+        </div>
+      </div>
+    </section>
 
     <div class="line"></div>
 
     <section>
       <h2>Featured Projects</h2>
       <div class="grid grid-3">
+        <!-- PDF RAG Chatbot -->
         <article class="card">
           <div class="thumb">
             <img src="assets/pdf_rag_thumbnail.png" alt="PDF RAG Chatbot — flowchart and retrieval pipeline" />
           </div>
           <h3>PDF RAG Chatbot</h3>
-          <p>Ask questions over PDFs. Chunking + embeddings + retrieval with a clean Gradio UI.</p>
+          <p>Ask questions over PDFs. Chunking + embeddings + retrieval with a clean UI.</p>
           <div class="meta">
             <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Vector DB</span><span class="tag">Gradio</span>
           </div>
           <div class="links">
-            <a href="#" target="_blank">Live Demo</a>
-            <a href="#" target="_blank">GitHub</a>
+            <a href="https://huggingface.co/spaces/HamidOmarov/First_RAG_System" target="_blank" rel="noopener">Live Demo</a>
+            <a href="https://github.com/HamidOmarov/rag-30-days" target="_blank" rel="noopener">GitHub</a>
           </div>
         </article>
+
+        <!-- EthicaGuard -->
         <article class="card">
           <div class="thumb">
             <img src="assets/ethicaguard_thumbnail.png" alt="EthicaGuard — AI content moderation visual" />
@@ -107,10 +153,12 @@
             <span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">Gradio</span>
           </div>
           <div class="links">
-            <a href="#" target="_blank">Live Demo</a>
-            <a href="https://github.com/HamidOmarov/EthicaGuard-AI-Content-Moderator" target="_blank">GitHub</a>
+            <a href="https://github.com/HamidOmarov/EthicaGuard-AI-Content-Moderator/blob/main/demo.png" target="_blank" rel="noopener">Live Demo</a>
+            <a href="https://github.com/HamidOmarov/EthicaGuard-AI-Content-Moderator" target="_blank" rel="noopener">GitHub</a>
           </div>
         </article>
+
+        <!-- Neural Sonata -->
         <article class="card">
           <div class="thumb">
             <img src="assets/neural_sonata_thumbnail.png" alt="Neural Sonata — waveform and creative coding thumbnail" />
@@ -121,8 +169,24 @@
             <span class="tag">Flask</span><span class="tag">p5.js</span><span class="tag">Visualization</span>
           </div>
           <div class="links">
-            <a href="#" target="_blank">Live Demo</a>
-            <a href="#" target="_blank">GitHub</a>
+            <a href="https://hamidomarov.github.io/" target="_blank" rel="noopener">Live Demo</a>
+            <a href="https://github.com/HamidOmarov/Neural-Sonata" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+
+        <!-- RAG Dashboard (separate card) -->
+        <article class="card">
+          <div class="thumb">
+            <img src="assets/pdf_rag_thumbnail.png" alt="RAG Dashboard — Streamlit UI thumbnail" />
+          </div>
+          <h3>RAG Dashboard</h3>
+          <p>Multi-page Streamlit app: PDF viewer, chat interface, analytics, connects to the FastAPI backend.</p>
+          <div class="meta">
+            <span class="tag">Streamlit</span><span class="tag">FastAPI</span><span class="tag">FAISS</span>
+          </div>
+          <div class="links">
+            <a href="https://huggingface.co/spaces/HamidOmarov/RAG-Dashboard" target="_blank" rel="noopener">Live Demo</a>
+            <a href="https://github.com/HamidOmarov/rag-dashboard" target="_blank" rel="noopener">GitHub</a>
           </div>
         </article>
       </div>
