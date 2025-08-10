@@ -50,7 +50,7 @@
     .btn-ghost:hover{background:#1b2445;color:#fff}
     .line{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:22px 0}
     .grid{display:grid;gap:18px}
-    @media(min-width:980px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:1.2fr .8fr}}
+    @media(min-width:980px){.grid-3{grid-template-columns:repeat(3,1fr)}}
     .card{background:radial-gradient(1100px 600px at -10% -20%,rgba(122,162,255,.12),transparent),
           linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
           border:1px solid var(--line);border-radius:16px;padding:16px}
@@ -60,7 +60,6 @@
     .thumb{aspect-ratio:4/3;border-radius:12px;overflow:hidden;border:1px solid #1e2744;background:#0e1424;display:flex;align-items:center;justify-content:center}
     .thumb img{width:100%;height:100%;object-fit:cover}
     .links{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    /* Make project links look like buttons (distinct from tags) */
     .links a{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--btnText);
              padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;border:0}
     .links a:hover{filter:brightness(1.06)}
@@ -69,16 +68,19 @@
     textarea{min-height:120px}
     footer{opacity:.85;padding:36px 0}
 
-    /* HERO (FastAPI RAG API) */
-    .hero{display:grid;gap:18px}
-    .hero-media{border:1px solid #1e2744;border-radius:16px;background:#0e1424;overflow:hidden}
-    .hero-media .frame{position:relative;aspect-ratio:16/9;width:100%;display:flex;align-items:center;justify-content:center}
-    .hero-media img{width:100%;height:100%;object-fit:cover}
-    .hero h2{margin:6px 0 6px;font-size:28px}
+    /* Featured first (FastAPI RAG API) */
+    .project-wide{padding:0;overflow:hidden}
+    .project-wide-inner{display:grid;gap:0}
+    @media(min-width:900px){.project-wide-inner{grid-template-columns:1.2fr .8fr}}
+    .project-wide-media{background:#0e1424;border-right:1px solid #1e2744}
+    .project-wide-media .frame{position:relative;aspect-ratio:16/9;width:100%;display:flex;align-items:center;justify-content:center}
+    .project-wide-media img{width:100%;height:100%;object-fit:cover}
+    .project-wide-body{padding:18px}
+    .project-wide h2{margin:6px 0 6px;font-size:28px}
+    .muted{color:#b6c3ff}
     .bullets{margin:10px 0 0 18px;color:#cfd7ff}
     .bullets li{margin:4px 0}
-    .hero .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-    .muted{color:#b6c3ff}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
   </style>
 </head>
 <body>
@@ -96,35 +98,38 @@
 
     <div class="line"></div>
 
-    <!-- HERO: FastAPI RAG API (prominent) -->
-    <section class="card hero grid grid-2">
-      <div class="hero-media">
-        <div class="frame">
-          <!-- Big GIF preview -->
-          <img src="assets/demo.gif" alt="FastAPI RAG API — dashboard and API demo GIF">
-        </div>
-      </div>
-      <div>
-        <h2>FastAPI RAG API</h2>
-        <p class="muted">Production-ready RAG backend + Streamlit dashboard. Upload PDFs, ask questions, extractive answers with AZ→EN translation and numeric/table robustness.</p>
-        <ul class="bullets">
-          <li>Endpoints: <code>/upload_pdf</code>, <code>/ask_question</code>, <code>/get_history</code>, <code>/health</code></li>
-          <li>Embeddings: sentence-transformers · Vector store: FAISS</li>
-          <li>Deployments: Hugging Face Spaces (API + UI)</li>
-        </ul>
-        <div class="actions">
-          <a class="btn" href="https://huggingface.co/spaces/HamidOmarov/RAG-Dashboard" target="_blank" rel="noopener">Live UI (Dashboard)</a>
-          <a class="btn" href="https://huggingface.co/spaces/HamidOmarov/FastAPI-RAG-API" target="_blank" rel="noopener">Live API (FastAPI)</a>
-          <a class="btn-ghost" href="https://github.com/HamidOmarov/fastapi-rag-api" target="_blank" rel="noopener">GitHub (API)</a>
-          <a class="btn-ghost" href="https://github.com/HamidOmarov/rag-dashboard" target="_blank" rel="noopener">GitHub (Dashboard)</a>
-        </div>
-      </div>
-    </section>
-
-    <div class="line"></div>
-
     <section>
       <h2>Featured Projects</h2>
+
+      <!-- 1) Featured FIRST: FastAPI RAG API (wide card) -->
+      <article class="card project-wide">
+        <div class="project-wide-inner">
+          <div class="project-wide-media">
+            <div class="frame">
+              <img src="assets/demo.gif" alt="FastAPI RAG API — dashboard and API demo GIF">
+            </div>
+          </div>
+          <div class="project-wide-body">
+            <h2>FastAPI RAG API</h2>
+            <p class="muted">Production-ready RAG backend + Streamlit dashboard. Upload PDFs, ask questions, extractive answers with AZ→EN translation and numeric/table robustness.</p>
+            <ul class="bullets">
+              <li>Endpoints: <code>/upload_pdf</code>, <code>/ask_question</code>, <code>/get_history</code>, <code>/health</code></li>
+              <li>Embeddings: sentence-transformers · Vector store: FAISS</li>
+              <li>Deployments: Hugging Face Spaces (API + UI)</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="https://huggingface.co/spaces/HamidOmarov/RAG-Dashboard" target="_blank" rel="noopener">Live UI (Dashboard)</a>
+              <a class="btn" href="https://huggingface.co/spaces/HamidOmarov/FastAPI-RAG-API" target="_blank" rel="noopener">Live API (FastAPI)</a>
+              <a class="btn-ghost" href="https://github.com/HamidOmarov/fastapi-rag-api" target="_blank" rel="noopener">GitHub (API)</a>
+              <a class="btn-ghost" href="https://github.com/HamidOmarov/rag-dashboard" target="_blank" rel="noopener">GitHub (Dashboard)</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="line"></div>
+
+      <!-- 2) Other three projects (side-by-side) -->
       <div class="grid grid-3">
         <!-- PDF RAG Chatbot -->
         <article class="card">
@@ -171,22 +176,6 @@
           <div class="links">
             <a href="https://hamidomarov.github.io/" target="_blank" rel="noopener">Live Demo</a>
             <a href="https://github.com/HamidOmarov/Neural-Sonata" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </article>
-
-        <!-- RAG Dashboard (separate card) -->
-        <article class="card">
-          <div class="thumb">
-            <img src="assets/pdf_rag_thumbnail.png" alt="RAG Dashboard — Streamlit UI thumbnail" />
-          </div>
-          <h3>RAG Dashboard</h3>
-          <p>Multi-page Streamlit app: PDF viewer, chat interface, analytics, connects to the FastAPI backend.</p>
-          <div class="meta">
-            <span class="tag">Streamlit</span><span class="tag">FastAPI</span><span class="tag">FAISS</span>
-          </div>
-          <div class="links">
-            <a href="https://huggingface.co/spaces/HamidOmarov/RAG-Dashboard" target="_blank" rel="noopener">Live Demo</a>
-            <a href="https://github.com/HamidOmarov/rag-dashboard" target="_blank" rel="noopener">GitHub</a>
           </div>
         </article>
       </div>
