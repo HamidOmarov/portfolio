@@ -3,11 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Hamid Omarov – AI Portfolio</title>
   <meta name="description" content="Hamid Omarov — AI Developer. RAG chatbots, content moderation, creative AI demos.">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://hamidomarov.github.io/portfolio/">
+
+  <!-- Robots & Theme -->
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0b0f1a">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -27,11 +32,14 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Inter font (actually loaded) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0f1a; --surface:#111829; --muted:#9db2ff; --text:#e7ecff; --line:#1f2a46;
+      --bg:#0b0f1a; --surface:#101729; --muted:#9db2ff; --text:#e7ecff; --line:#1f2a46;
       --accent:#7aa2ff; --accent2:#9ef0ff; --btnText:#061127;
+      --ok:#9ef0ff; --warn:#ffd08a;
     }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
@@ -51,7 +59,8 @@
     .line{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:22px 0}
     .grid{display:grid;gap:18px}
     @media(min-width:980px){.grid-3{grid-template-columns:repeat(3,1fr)}}
-    .card{background:radial-gradient(1100px 600px at -10% -20%,rgba(122,162,255,.12),transparent),
+    .card{background:
+          radial-gradient(1100px 600px at -10% -20%,rgba(122,162,255,.12),transparent),
           linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
           border:1px solid var(--line);border-radius:16px;padding:16px}
     .card h3{margin:8px 0 6px;font-size:18px}
@@ -68,23 +77,71 @@
     textarea{min-height:120px}
     footer{opacity:.85;padding:36px 0}
 
-    /* Featured first (FastAPI RAG API) */
+    /* Hire banner */
+    .hire{
+      display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;
+      background:linear-gradient(135deg,rgba(122,162,255,.18),rgba(158,240,255,.12));
+      border:1px solid var(--line);padding:10px 12px;border-radius:12px
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px rgba(158,240,255,.8)}
+
+    /* Featured project (wide) */
     .project-wide{padding:0;overflow:hidden}
     .project-wide-inner{display:grid;gap:0}
     @media(min-width:900px){.project-wide-inner{grid-template-columns:1.2fr .8fr}}
     .project-wide-media{background:#0e1424;border-right:1px solid #1e2744}
-    .project-wide-media .frame{position:relative;aspect-ratio:16/9;width:100%;display:flex;align-items:center;justify-content:center}
-    .project-wide-media img{width:100%;height:100%;object-fit:cover}
     .project-wide-body{padding:18px}
     .project-wide h2{margin:6px 0 6px;font-size:28px}
     .muted{color:#b6c3ff}
     .bullets{margin:10px 0 0 18px;color:#cfd7ff}
     .bullets li{margin:4px 0}
     .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+
+    /* Browser mock frame to present GIF cleanly (no ugly stretching) */
+    .browser{
+      width:100%;aspect-ratio:16/9;border-radius:14px;border:1px solid #1e2744;
+      background:
+        radial-gradient(800px 400px at -10% -20%,rgba(122,162,255,.08),transparent),
+        #0e1424;
+      overflow:hidden;position:relative
+    }
+    .browser-top{
+      height:34px;display:flex;align-items:center;gap:8px;padding:0 12px;
+      border-bottom:1px solid #1e2744;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))
+    }
+    .b-dot{width:10px;height:10px;border-radius:50%}
+    .b-red{background:#ff6b6b}.b-yellow{background:#f9d56e}.b-green{background:#6bffb3}
+    .browser-canvas{position:absolute;inset:34px 0 0 0;display:grid;place-items:center}
+    .demo-media{
+      max-width:100%;max-height:100%;
+      width:100%;height:100%;
+      object-fit:contain; /* <-- contain: kiçik GIF eybəcər görünməsin */
+      image-rendering:-webkit-optimize-contrast;
+      image-rendering:crisp-edges;
+      background:
+        radial-gradient(600px 300px at 20% 10%,rgba(122,162,255,.12),transparent),
+        #0b1020;
+    }
+
+    /* Accessibility helpers */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* Small tweaks for mobile */
+    @media(max-width:520px){
+      h1{font-size:34px}
+      .project-wide h2{font-size:24px}
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .btn,.links a{transition:none}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <a class="sr-only" href="#content">Skip to content</a>
+
+  <div class="wrap" id="content">
     <header>
       <span class="pill">AI Developer · RAG · Chatbots</span>
       <h1>Hamid Omarov</h1>
@@ -94,6 +151,14 @@
         <a class="btn-ghost" href="https://www.linkedin.com/in/hamidomarov/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn-ghost" href="#contact">Contact</a>
       </div>
+
+      <!-- Available for Hire banner -->
+      <div class="hire" role="status" aria-live="polite">
+        <span class="dot" aria-hidden="true"></span>
+        <strong>Available for Hire</strong>
+        <span style="color:#cfd7ff"> · RAG Systems • PDF Processing • FastAPI • LangChain</span>
+        <a class="btn-ghost" style="margin-left:auto" href="https://www.upwork.com/" target="_blank" rel="noopener">Upwork</a>
+      </div>
     </header>
 
     <div class="line"></div>
@@ -102,15 +167,29 @@
       <h2>Featured Projects</h2>
 
       <!-- 1) Featured FIRST: FastAPI RAG API (wide card) -->
-      <article class="card project-wide">
+      <article class="card project-wide" aria-labelledby="proj-ragapi-title">
         <div class="project-wide-inner">
           <div class="project-wide-media">
-            <div class="frame">
-              <img src="assets/demo.gif" alt="FastAPI RAG API — dashboard and API demo GIF">
+            <!-- Browser mockup with 'contain' fit so small GIF still looks intentional -->
+            <div class="browser" aria-label="Demo preview area">
+              <div class="browser-top" aria-hidden="true">
+                <span class="b-dot b-red"></span>
+                <span class="b-dot b-yellow"></span>
+                <span class="b-dot b-green"></span>
+              </div>
+              <div class="browser-canvas">
+                <img
+                  class="demo-media"
+                  src="assets/demo.gif"
+                  alt="FastAPI RAG API — dashboard and API demo GIF"
+                  loading="eager"
+                  width="1280" height="720"
+                >
+              </div>
             </div>
           </div>
           <div class="project-wide-body">
-            <h2>FastAPI RAG API</h2>
+            <h2 id="proj-ragapi-title">FastAPI RAG API</h2>
             <p class="muted">Production-ready RAG backend + Streamlit dashboard. Upload PDFs, ask questions, extractive answers with AZ→EN translation and numeric/table robustness.</p>
             <ul class="bullets">
               <li>Endpoints: <code>/upload_pdf</code>, <code>/ask_question</code>, <code>/get_history</code>, <code>/health</code></li>
@@ -134,7 +213,7 @@
         <!-- PDF RAG Chatbot -->
         <article class="card">
           <div class="thumb">
-            <img src="assets/pdf_rag_thumbnail.png" alt="PDF RAG Chatbot — flowchart and retrieval pipeline" />
+            <img src="assets/pdf_rag_thumbnail.png" alt="PDF RAG Chatbot — flowchart and retrieval pipeline" loading="lazy" width="1200" height="900"/>
           </div>
           <h3>PDF RAG Chatbot</h3>
           <p>Ask questions over PDFs. Chunking + embeddings + retrieval with a clean UI.</p>
@@ -150,7 +229,7 @@
         <!-- EthicaGuard -->
         <article class="card">
           <div class="thumb">
-            <img src="assets/ethicaguard_thumbnail.png" alt="EthicaGuard — AI content moderation visual" />
+            <img src="assets/ethicaguard_thumbnail.png" alt="EthicaGuard — AI content moderation visual" loading="lazy" width="1200" height="900"/>
           </div>
           <h3>EthicaGuard</h3>
           <p>Toxic content detector fine-tuned on social comments with a simple web demo.</p>
@@ -166,7 +245,7 @@
         <!-- Neural Sonata -->
         <article class="card">
           <div class="thumb">
-            <img src="assets/neural_sonata_thumbnail.png" alt="Neural Sonata — waveform and creative coding thumbnail" />
+            <img src="assets/neural_sonata_thumbnail.png" alt="Neural Sonata — waveform and creative coding thumbnail" loading="lazy" width="1200" height="900"/>
           </div>
           <h3>Neural Sonata</h3>
           <p>Interactive music & visuals driven by model predictions. A creative AI experience.</p>
@@ -199,13 +278,13 @@
     <section id="contact" class="card">
       <h2>Contact</h2>
       <form id="contact-form" action="https://formspree.io/f/myzplzbn" method="POST">
-        <input name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Your email" required>
-        <textarea name="message" placeholder="Project idea, links, timeline" required></textarea>
+        <input name="name" placeholder="Your name" required aria-label="Your name">
+        <input type="email" name="email" placeholder="Your email" required aria-label="Your email">
+        <textarea name="message" placeholder="Project idea, links, timeline" required aria-label="Message"></textarea>
         <input type="hidden" name="_subject" value="New message from Hamid's portfolio">
         <input type="text" name="_gotcha" style="display:none">
         <button class="btn" type="submit">Send</button>
-        <p id="form-status" style="margin:8px 0 0; color:#9ef0ff; display:none;">Thanks! Your message was sent.</p>
+        <p id="form-status" style="margin:8px 0 0; color:var(--ok); display:none;">Thanks! Your message was sent.</p>
         <p id="form-error" style="margin:8px 0 0; color:#ff9e9e; display:none;">Sorry, something went wrong. Try again later.</p>
       </form>
     </section>
@@ -216,9 +295,11 @@
     </footer>
   </div>
 
-  <script>
+  <script defer>
+    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
+    // Contact form
     const form = document.getElementById('contact-form');
     const okMsg = document.getElementById('form-status');
     const errMsg = document.getElementById('form-error');
@@ -245,5 +326,11 @@
       }
     });
   </script>
+
+  <noscript>
+    <style>
+      .demo-media{object-fit:contain}
+    </style>
+  </noscript>
 </body>
 </html>
